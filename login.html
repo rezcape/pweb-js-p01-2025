@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-page="login">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login | Recipes App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="brand">Recipes App</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card card--center">
+        <h2 class="card__title">Login</h2>
+        <p class="card__subtitle">Masuk dengan username dari DummyJSON. Password boleh bebas, namun tidak boleh kosong.</p>
+
+        <form id="loginForm" class="form">
+          <div class="form__field">
+            <label for="username" class="form__label">Username</label>
+            <input id="username" name="username" type="text" class="input" placeholder="mis. 'emilys'" autocomplete="username" required />
+          </div>
+          <div class="form__field">
+            <label for="password" class="form__label">Password</label>
+            <input id="password" name="password" type="password" class="input" placeholder="isi password (bebas)" autocomplete="current-password" required />
+          </div>
+
+          <button id="loginBtn" type="submit" class="btn btn--primary btn--full">
+            <span class="btn__content">
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn__label">Login</span>
+            </span>
+          </button>
+
+          <div id="loginMessage" class="alert" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year"></span> Recipes App</small>
+      </div>
+    </footer>
+
+    <script defer src="app.js"></script>
+  </body>
+</html>

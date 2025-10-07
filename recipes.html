@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-page="recipes">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recipes Collection</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="brand">Recipes App</h1>
+        <nav class="nav">
+          <span id="greeting" class="nav__user" aria-live="polite"></span>
+          <button id="logoutBtn" class="btn btn--ghost">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="toolbar card">
+        <h2 class="sr-only">Pencarian</h2>
+        <div class="toolbar__row">
+          <div class="input-with-icon">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 21l-4.35-4.35m1.1-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/></svg>
+            <input id="searchInput" type="search" class="input input--lg" placeholder="Cari nama, cuisine, ingredients, atau tags..." aria-label="Cari resep" />
+          </div>
+          <button id="clearSearchBtn" class="btn btn--ghost">Clear</button>
+        </div>
+        <div id="statusBar" class="status-bar" role="status" aria-live="polite"></div>
+      </section>
+
+      <section aria-live="polite">
+        <div id="recipesGrid" class="grid"></div>
+
+        <div class="actions">
+          <button id="showMoreBtn" class="btn btn--secondary">Show More</button>
+        </div>
+
+        <div id="recipesMessage" class="alert" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalBody">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h3 id="modalTitle" class="modal__title">Recipe Detail</h3>
+          <button class="btn btn--icon" aria-label="Close" data-close-modal>
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.71a1 1 0 010 1.41L13.41 12l4.89 4.88a1 1 0 01-1.42 1.42L12 13.41l-4.88 4.89a1 1 0 01-1.42-1.42L10.59 12 5.7 7.12A1 1 0 017.12 5.7L12 10.59l4.88-4.89a1 1 0 011.41 0z"/></svg>
+          </button>
+        </header>
+        <div id="modalBody" class="modal__body"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year"></span> Recipes App</small>
+      </div>
+    </footer>
+
+    <script defer src="app.js"></script>
+  </body>
+</html>
