@@ -1,0 +1,359 @@
+/* =======================
+   RESET & GLOBAL STYLE
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center;
+  color: #333;
+}
+
+/* =======================
+   LOGIN PAGE STYLE (FIXED CENTER)
+======================= */
+
+body[data-page="login"],
+body:has(.login-container) {
+  background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* <-- bikin kontainer tepat di tengah */
+  height: 100vh; /* isi penuh tinggi layar */
+}
+
+.login-container {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 40px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  width: 350px;
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.5s ease;
+}
+
+.login-container h1 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #ffa31a;
+}
+
+.login-container form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffa31a;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #e68a00;
+}
+
+.message {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.message.error {
+  color: #ff6b6b;
+}
+
+.message.success {
+  color: #8aff8a;
+}
+
+/* Animasi masuk biar smooth */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================
+   NAVBAR (RECIPES PAGE)
+======================= */
+.navbar {
+  background-color: #ffa31a;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .navbar-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#logout-button {
+  background-color: white;
+  color: #ffa31a;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#logout-button:hover {
+  background-color: #fff4e0;
+}
+
+/* =======================
+   CONTAINER & SEARCH
+======================= */
+.container {
+  flex: 1;
+  padding: 30px 50px;
+  background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?crop=entropy&cs=tinysrgb");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 280px;
+}
+
+.filter-controls input:focus,
+.filter-controls select:focus {
+  outline: none;
+  border-color: #ffa31a;
+}
+
+/* =======================
+   RECIPES GRID
+======================= */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.recipe-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.card-content .cuisine {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+.rating {
+  color: gold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.ingredients {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.view-recipe-btn {
+  background-color: #ffa31a;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.view-recipe-btn:hover {
+  background-color: #e68a00;
+}
+
+/* =======================
+   MODAL
+======================= */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 60px auto;
+  padding: 25px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 700px;
+  animation: fadeIn 0.4s ease;
+}
+
+.close-button {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================
+   LOADER & MESSAGE
+======================= */
+.loader {
+  display: none;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #ffa31a;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 30px auto;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.message.error {
+  color: red;
+  text-align: center;
+}
+
+.load-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#show-more-button {
+  padding: 10px 20px;
+  background-color: #ffa31a;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#show-more-button:hover {
+  background-color: #e68a00;
+}
+
+/* =======================
+   RESPONSIVE
+======================= */
+@media (max-width: 600px) {
+  .login-container {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .filter-controls input,
+  .filter-controls select {
+    width: 100%;
+  }
+}
