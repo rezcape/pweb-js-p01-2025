@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Collection</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-brand">Welcome, <span id="user-name"></span>!</div>
+      <button id="logout-button">Logout</button>
+    </nav>
+
+    <main class="container">
+      <div class="filter-controls">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search by name, cuisine, ingredients..."
+        />
+        <select id="cuisine-filter">
+          <option value="">All Cuisines</option>
+        </select>
+      </div>
+
+      <div id="recipes-container" class="recipes-grid"></div>
+
+      <div id="loader" class="loader"></div>
+      <p id="error-message" class="message error"></p>
+
+      <div class="load-more-container">
+        <button id="show-more-button" style="display: none">Show More</button>
+      </div>
+    </main>
+
+    <div id="recipe-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
