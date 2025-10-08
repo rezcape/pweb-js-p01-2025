@@ -1,6 +1,4 @@
-// Menjalankan script setelah seluruh konten DOM dimuat
 document.addEventListener("DOMContentLoaded", () => {
-  // Mengecek di halaman mana kita berada dan menjalankan fungsi yang sesuai
   if (document.getElementById("login-form")) {
     initLoginPage();
   } else if (document.getElementById("recipes-container")) {
@@ -8,11 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// =================================================================
-// LOGIN PAGE LOGIC
-// =================================================================
 function initLoginPage() {
-  // Jika sudah login, langsung arahkan ke halaman resep
   if (localStorage.getItem("userFirstName")) {
     window.location.href = "recipes.html";
     return;
@@ -23,24 +17,21 @@ function initLoginPage() {
   const messageContainer = document.getElementById("message-container");
 
   loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Mencegah form dari reload halaman
+    e.preventDefault();
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
 
-    // Validasi sederhana
     if (!username || !password) {
       showMessage("Username and password cannot be empty.", "error");
       return;
     }
 
-    // Menampilkan state loading
     loginButton.disabled = true;
     loginButton.textContent = "Logging in...";
-    showMessage(""); // Menghapus pesan sebelumnya
+    showMessage("");
 
     try {
-      // Menggunakan endpoint /auth/login untuk autentikasi yang lebih sesuai
       const response = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,21 +44,17 @@ function initLoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Menangani error dari API (contoh: username/password salah)
         throw new Error(data.message || "Login failed!");
       }
 
-      // Jika login berhasil
       showMessage("Login successful! Redirecting...", "success");
       localStorage.setItem("userFirstName", data.firstName);
-      localStorage.setItem("userToken", data.token); // Simpan token untuk praktik terbaik
+      localStorage.setItem("userToken", data.token);
 
-      // Arahkan ke halaman resep setelah 1.5 detik
       setTimeout(() => {
         window.location.href = "recipes.html";
       }, 1500);
     } catch (error) {
-      // Menangani error koneksi atau error lainnya
       console.error("Login Error:", error);
       showMessage(error.message, "error");
       loginButton.disabled = false;
@@ -81,20 +68,14 @@ function initLoginPage() {
   }
 }
 
-// =================================================================
-// RECIPES PAGE LOGIC
-// =================================================================
 function initRecipesPage() {
-  // === 1. Proteksi Halaman ===
   const userFirstName = localStorage.getItem("userFirstName");
   if (!userFirstName) {
-    // Jika tidak ada data user, tendang kembali ke halaman login
     alert("You must be logged in to view this page.");
     window.location.href = "login.html";
     return;
   }
 
-  // === 2. Inisialisasi Variabel dan Elemen DOM ===
   const userNameElement = document.getElementById("user-name");
   const logoutButton = document.getElementById("logout-button");
   const recipesContainer = document.getElementById("recipes-container");
@@ -104,31 +85,26 @@ function initRecipesPage() {
   const loader = document.getElementById("loader");
   const errorMessageElement = document.getElementById("error-message");
 
-  // State Management
   let allRecipes = [];
   let filteredRecipes = [];
   let uniqueCuisines = new Set();
-  let recipesToShow = 9; // Jumlah resep yang ditampilkan per halaman
-
-  // === 3. Setup Halaman Awal ===
+  let recipesToShow = 9;
   userNameElement.textContent = userFirstName;
 
   logoutButton.addEventListener("click", () => {
-    localStorage.clear(); // Hapus semua data dari localStorage
+    localStorage.clear();
     window.location.href = "login.html";
   });
 
-  // === 4. Fetch dan Tampilkan Data Resep ===
   async function fetchRecipes() {
     showLoader(true);
     try {
-      // Ambil semua resep sekaligus
       const response = await fetch("https://dummyjson.com/recipes?limit=0");
       if (!response.ok) throw new Error("Failed to fetch recipes.");
       const data = await response.json();
 
       allRecipes = data.recipes;
-      filteredRecipes = [...allRecipes]; // Salin semua resep ke array filter awal
+      filteredRecipes = [...allRecipes];
 
       populateCuisineFilter();
       displayRecipes();
@@ -140,7 +116,7 @@ function initRecipesPage() {
   }
 
   function displayRecipes() {
-    recipesContainer.innerHTML = ""; // Kosongkan container
+    recipesContainer.innerHTML = "";
     const recipesToDisplay = filteredRecipes.slice(0, recipesToShow);
 
     if (recipesToDisplay.length === 0) {
@@ -172,7 +148,6 @@ function initRecipesPage() {
       recipesContainer.appendChild(card);
     });
 
-    // Tampilkan atau sembunyikan tombol "Show More"
     if (filteredRecipes.length > recipesToShow) {
       showMoreButton.style.display = "block";
     } else {
@@ -180,7 +155,6 @@ function initRecipesPage() {
     }
   }
 
-  // === 5. Fitur Filter dan Search ===
   function populateCuisineFilter() {
     allRecipes.forEach((recipe) => uniqueCuisines.add(recipe.cuisine));
     uniqueCuisines.forEach((cuisine) => {
@@ -211,26 +185,23 @@ function initRecipesPage() {
       return matchesCuisine && matchesSearch;
     });
 
-    recipesToShow = 9; // Reset jumlah resep saat filter/search baru
+    recipesToShow = 9;
     displayRecipes();
   }
 
-  // Debouncing untuk search real-time
   let debounceTimer;
   searchInput.addEventListener("input", () => {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(handleFilterAndSearch, 300); // Tunda eksekusi selama 300ms
+    debounceTimer = setTimeout(handleFilterAndSearch, 300);
   });
 
   cuisineFilter.addEventListener("change", handleFilterAndSearch);
 
-  // === 6. Fitur "Show More" ===
   showMoreButton.addEventListener("click", () => {
     recipesToShow += 9;
     displayRecipes();
   });
 
-  // === 7. Fitur Modal Detail Resep ===
   const modal = document.getElementById("recipe-modal");
   const modalBody = document.getElementById("modal-body");
   const closeModalButton = document.querySelector(".close-button");
@@ -279,7 +250,6 @@ function initRecipesPage() {
     }
   };
 
-  // === 8. Utility Functions ===
   function generateStars(rating) {
     let stars = "";
     for (let i = 1; i <= 5; i++) {
@@ -297,6 +267,5 @@ function initRecipesPage() {
     errorMessageElement.style.display = "block";
   }
 
-  // === 9. Panggil fungsi fetch awal ===
   fetchRecipes();
 }

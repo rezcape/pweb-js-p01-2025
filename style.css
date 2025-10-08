@@ -1,6 +1,4 @@
-/* =======================
-   RESET & GLOBAL STYLE
-======================= */
+//Styling di sini
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +7,7 @@
 }
 
 body {
+  margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,10 +16,6 @@ body {
   color: #333;
 }
 
-/* =======================
-   LOGIN PAGE STYLE (FIXED CENTER)
-======================= */
-
 body[data-page="login"],
 body:has(.login-container) {
   background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
@@ -28,8 +23,8 @@ body:has(.login-container) {
   background-position: center;
   display: flex;
   justify-content: center;
-  align-items: center; /* <-- bikin kontainer tepat di tengah */
-  height: 100vh; /* isi penuh tinggi layar */
+  align-items: center;
+  height: 100vh;
 }
 
 .login-container {
@@ -90,7 +85,6 @@ body:has(.login-container) {
   color: #8aff8a;
 }
 
-/* Animasi masuk biar smooth */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -102,9 +96,6 @@ body:has(.login-container) {
   }
 }
 
-/* =======================
-   NAVBAR (RECIPES PAGE)
-======================= */
 .navbar {
   background-color: #ffa31a;
   color: white;
@@ -135,9 +126,6 @@ body:has(.login-container) {
   background-color: #fff4e0;
 }
 
-/* =======================
-   CONTAINER & SEARCH
-======================= */
 .container {
   flex: 1;
   padding: 30px 50px;
@@ -169,9 +157,6 @@ body:has(.login-container) {
   border-color: #ffa31a;
 }
 
-/* =======================
-   RECIPES GRID
-======================= */
 .recipes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -247,9 +232,6 @@ body:has(.login-container) {
   background-color: #e68a00;
 }
 
-/* =======================
-   MODAL
-======================= */
 .modal {
   display: none;
   position: fixed;
@@ -295,9 +277,6 @@ body:has(.login-container) {
   }
 }
 
-/* =======================
-   LOADER & MESSAGE
-======================= */
 .loader {
   display: none;
   border: 5px solid #f3f3f3;
@@ -339,9 +318,6 @@ body:has(.login-container) {
   background-color: #e68a00;
 }
 
-/* =======================
-   RESPONSIVE
-======================= */
 @media (max-width: 600px) {
   .login-container {
     width: 90%;
